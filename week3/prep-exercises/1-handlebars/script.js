@@ -1,3 +1,4 @@
+const Handlebars = require("handlebars");
 
 /**
  * 4. Fun with Handlebars
@@ -11,17 +12,28 @@
  */
 
 
+
 function drawCard() {
   // YOUR CODE GOES IN HERE
+  const cardData = {
+    subject: getRandomElement(subjects),
+    punchline: getRandomElement(punchlines)
+  }
+  const card = "<p>{{subject}} is great to {{punchline}}</p>"
+  const template = Handlebars.compile(card);
+  const result = template(cardData);
+
+  console.log(result);
 }
 
-drawCard();
 
 /**
  * Given an array, return an element from it chosen at random
  */
 function getRandomElement(array) {
   // YOUR CODE GOES IN HERE
+  const randomElement = array[Math.floor(Math.random() * array.length)];
+  return randomElement;
 }
 
 const subjects = [
@@ -43,3 +55,5 @@ const punchlines = [
   'achieve world piece',
   'help people learn programing',
 ];
+
+drawCard();
